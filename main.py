@@ -51,14 +51,14 @@ def home():
             print("ymotortest")
             #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
 
-        if(ySwitch.is_pressed):
+        if(xSwitch.is_pressed):
             print("x homed")
             xSwitchIsPressed = True
         else:
             print("xmotortest")
             #xMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
 
-        if(ySwitch.is_pressed):
+        if(zSwitch.is_pressed):
             print("z homed")
             zSwitchIsPressed = True
         else:
