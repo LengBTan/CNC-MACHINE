@@ -5,6 +5,9 @@ from gpiozero import Button
 import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
 
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+
 GPIOY_pins=[14,15,18,23]
 GPIOX_pins=[24,25,8,7]
 GPIOZ_pins=[1,12,16,20]
@@ -17,8 +20,7 @@ xCoord = 0
 yCoord = 0
 zCoord = 0
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
+
 
 
 GPIO.setup(GPIOX_pins[0],GPIO.OUT)
@@ -29,6 +31,8 @@ yMotor = RpiMotorLib.BYJMotor("MyMotorOne", "Nema")
 xMotor = RpiMotorLib.BYJMotor("MyMotorTwo", "Nema")
 zMotor = RpiMotorLib.BYJMotor("MyMotorThree", "Nema")
 time.sleep(0.5)
+
+
 
 def home():
     ySwitch=Button(2)
@@ -44,31 +48,24 @@ def home():
         else:
             print("ymotortest")
             time.sleep(1)
-            #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
+            yMotor.motor_run(GPIOY_pins , 0.005, 60, True, False, "half", .05)
 
-<<<<<<< HEAD
-=======
-    while ((xSwitchIsPressed == False)) :
->>>>>>> a36d1083529cf4f97b8213537d659c313e6a178e
+    while ((xSwitchIsPressed == False)):
         if(xSwitch.is_pressed):
             print("x homed")
             xSwitchIsPressed = True
         else:
-            print("xmotortest")
             time.sleep(1)
-            #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
+            xMotor.motor_run(GPIOX_pins, 0.005, 60, True, False , "half", .05)
 
-<<<<<<< HEAD
-=======
-    while ((zSwitchIsPressed == False)) :
->>>>>>> a36d1083529cf4f97b8213537d659c313e6a178e
+    while ((zSwitchIsPressed == False)):
         if(zSwitch.is_pressed):
             print("z homed")
             zSwitchIsPressed = True
         else:
             print("zmotortest")
             time.sleep(1)
-            #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
+            zMotor.motor_run(GPIOZ_pins , 0.005, 60, True, False, "half", .05)
     print("sucessfully homed")
 
 
@@ -79,7 +76,7 @@ def moveXAxis():
 def moveZAxis():
     print("")
 
+home()
 
-
-GPIO.cleanup()
+#SGPIO.cleanup()
 sys.exit() 
