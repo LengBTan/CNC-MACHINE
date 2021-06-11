@@ -10,25 +10,30 @@ zSwitch=Button(4)
 ySwitchIsPressed = False
 xSwitchIsPressed = False
 zSwitchIsPressed = False
+while ((ySwitchIsPressed == False)) :
+    if(ySwitch.is_pressed):
+        print("y homed")
+        ySwitchIsPressed = True
+    else:
+        print("ymotortest")
+        time.sleep(1)
+        #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
 
-while ((ySwitchIsPressed == False) and (xSwitchIsPressed == False) and (zSwitchIsPressed == False)) :
-        if(ySwitch.is_pressed):
-            print("y homed")
-            ySwitchIsPressed = True
-        #else:
-            #print("ymotortest")
-            #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
+while ((xSwitchIsPressed == False)) :
+    if(xSwitch.is_pressed):
+        print("x homed")
+        xSwitchIsPressed = True
+    else:
+        print("xmotortest")
+        time.sleep(1)
+        #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
 
-        if(xSwitch.is_pressed):
-            print("x homed")
-            xSwitchIsPressed = True
-       # else:
-            #print("xmotortest")
-            #xMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
-
-        if(zSwitch.is_pressed):
-            print("z homed")
-            zSwitchIsPressed = True
-       # else:
-            #print("zmotortest")
-            #zMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
+while ((zSwitchIsPressed == False)) :
+    if(zSwitch.is_pressed):
+        print("z homed")
+        zSwitchIsPressed = True
+    else:
+        print("zmotortest")
+        time.sleep(1)
+        #yMotor.motor_run(GPIOY_pins , 0.005, 60, False, True, "half", .05)
+print("sucessfully homed")
