@@ -16,12 +16,13 @@ x_endstop_pin = 2
 y_endstop_pin = 3
 z_endstop_pin = 4
 
+global xCoord
+global yCoord
+global zCoord
+
 xCoord = 0
 yCoord = 0
 zCoord = 0
-
-
-
 
 GPIO.setup(GPIOX_pins[0],GPIO.OUT)
 GPIO.setup(y_endstop_pin,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
@@ -69,14 +70,45 @@ def home():
     print("sucessfully homed")
 
 
-def moveYAxis():
-    print("")
-def moveXAxis():
-    print("")
-def moveZAxis():
-    print("")
+def moveX(pos1, pos2):
+    global xCoord
+    if(pos1 < pos2):
+        finalPos = pos2 - pos1
+        xCoord = pos1 + finalPos
+        print((finalPos), " CW")
+    if(pos1 > pos2):
+        finalPos = pos1 - pos2
+        xCoord = pos1 - finalPos
+        print((finalPos), " CCW")
 
-home()
+def moveY(pos1, pos2):
+    global yCoord
+    if(pos1 < pos2):
+        finalPos = pos2 - pos1
+        yCoord = pos1 + finalPos
+        print((finalPos), " CW")
+    if(pos1 > pos2):
+        finalPos = pos1 - pos2
+        yCoord = pos1 - finalPos
+        print((finalPos), " CCW")
+
+def moveZ(pos1, pos2):
+    global zCoord
+    if(pos1 < pos2):
+        finalPos = pos2 - pos1
+        zCoord = pos1 + finalPos
+        print((finalPos), " CW")
+    if(pos1 > pos2):
+        finalPos = pos1 - pos2
+        zCoord = pos1 - finalPos
+        print((finalPos), " CCW")
+
+
+
+if __name__ == "__main__":
+    home()
+
+
 
 #SGPIO.cleanup()
 sys.exit() 
