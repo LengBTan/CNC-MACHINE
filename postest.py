@@ -1,8 +1,13 @@
+
 pos1 = 64
 pos2 = 1
 
 global xcoord
 xcoord = 0
+
+
+
+
 
 def move(pos1, pos2):
     global xcoord
@@ -22,4 +27,8 @@ print("current coord is:", xcoord)
 move(xcoord, pos2)
 print("current coord is:", xcoord)
 
-
+if __name__ == "__main__":
+    f=open("drawtest.txt", "r")
+    if f.mode =="r":
+        contents = f.read()
+        print(contents)
