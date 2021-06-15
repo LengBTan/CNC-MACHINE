@@ -1,3 +1,4 @@
+#import libraries and packages
 import sys
 import time
 import threading
@@ -5,6 +6,8 @@ from gpiozero import Button
 import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
 
+
+#setup GPIO pins
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
@@ -16,24 +19,19 @@ x_endstop_pin = 2
 y_endstop_pin = 3
 z_endstop_pin = 4
 
+#Global variable
 global xCoord
 global yCoord
 global zCoord
-
 xCoord = 0
 yCoord = 0
 zCoord = 0
-
-GPIO.setup(GPIOX_pins[0],GPIO.OUT)
-GPIO.setup(y_endstop_pin,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 #Declare instance of a class to pass GPIO pins to RpiMotorLib
 yMotor = RpiMotorLib.BYJMotor("MyMotorOne", "Nema")
 xMotor = RpiMotorLib.BYJMotor("MyMotorTwo", "Nema")
 zMotor = RpiMotorLib.BYJMotor("MyMotorThree", "Nema")
 time.sleep(0.5)
-
-
 
 def home():
     ySwitch=Button(2)
@@ -105,10 +103,13 @@ def moveZ(pos1, pos2):
 
 
 
+
+
 if __name__ == "__main__":
     home()
+    filename = input("enter filename of drawing")
 
 
 
-#SGPIO.cleanup()
+#GPIO.cleanup()
 sys.exit() 
