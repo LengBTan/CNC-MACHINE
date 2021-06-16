@@ -5,6 +5,7 @@ import threading
 from gpiozero import Button
 import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
+from io import StringIO
 
 
 #setup GPIO pins
@@ -19,7 +20,7 @@ x_endstop_pin = 2
 y_endstop_pin = 3
 z_endstop_pin = 4
 
-#Global variable
+#Global variables
 global xCoord
 global yCoord
 global zCoord
@@ -65,7 +66,6 @@ def home():
             zMotor.motor_run(GPIOZ_pins , 0.01, 1, True, False, "half", .05)
     print("sucessfully homed")
 
-
 def moveX(pos1, pos2):
     global xCoord
     if(pos1 < pos2):
@@ -99,14 +99,30 @@ def moveZ(pos1, pos2):
         zCoord = pos1 - finalPos
         print((finalPos), " CCW")
 
-
-
-
+def draw(filename):
+    f = open(filename, "r")
+    data = f.read()
+    lines = data.splitlines()
+    for i,line in enumerate(lines):
+        if "X" in line:
+            xNext = line[1:]
+            print(xNext)
+        if "Y" in line:
+            yNext = line[1:]
+            print(yNext)
+        if "Z" in line:
+            zNext = line[1:]
+            print(zNext )
+    f.close
 
 if __name__ == "__main__":
-    home()
-
-
+    while True:
+        filename = input("input")
+        try:
+            home()
+            draw(filename)
+        except IOError:
+            print("Could not find or load file")
 
 #GPIO.cleanup()
 sys.exit() 
