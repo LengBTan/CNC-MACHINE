@@ -1,26 +1,47 @@
 
 from io import StringIO
 
-global xcoord
-xcoord = 0
+#Global variables
+global xCoord
+global yCoord
+global zCoord
+xCoord = 0
+yCoord = 0
+zCoord = 0
 
-def move(pos1, pos2):
-    global xcoord
+
+def moveX(pos1, pos2):
+    global xCoord
     if(pos1 < pos2):
         finalPos = pos2 - pos1
-        xcoord = pos1 + finalPos
-        print((finalPos), " CW")
+        xCoord = pos1 + finalPos
+        print((finalPos), " CW X MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
-        xcoord = pos1 - finalPos
-        print((finalPos), " CCW")
+        xCoord = pos1 - finalPos
+        print((finalPos), " CCW X MOTOR")
 
+def moveY(pos1, pos2):
+    global yCoord
+    if(pos1 < pos2):
+        finalPos = pos2 - pos1
+        yCoord = pos1 + finalPos
+        print((finalPos), " CW Y MOTOR")
+    if(pos1 > pos2):
+        finalPos = pos1 - pos2
+        yCoord = pos1 - finalPos
+        print((finalPos), " CCW Y MOTOR")
 
-""" move(xcoord, pos1)
-print("current coord is:", xcoord)
-move(xcoord, pos2)
-print("current coord is:", xcoord)
- """
+def moveZ(pos1, pos2):
+    global zCoord
+    if(pos1 < pos2):
+        finalPos = pos2 - pos1
+        zCoord = pos1 + finalPos
+        print((finalPos), " CW Z MOTOR")
+    if(pos1 > pos2):
+        finalPos = pos1 - pos2
+        zCoord = pos1 - finalPos
+        print((finalPos), " CCW Z MOTOR")
 
 def startdraw(filename):
     f = open(filename, "r")
@@ -29,17 +50,15 @@ def startdraw(filename):
     for i,line in enumerate(lines):
         if "X" in line:
             xNext = int(line[1:])
-            move(xcoord, xNext)
+            moveX(xCoord, xNext)
             #print(xNext)
         if "Y" in line:
             yNext = int(line[1:])
-            
-            
+            moveY(yCoord,yNext)
             #print(yNext)
         if "Z" in line:
             zNext = int(line[1:])
-            
-            
+            moveZ(zCoord,zNext)
             #print(zNext)
     f.close
 
@@ -47,7 +66,7 @@ def startdraw(filename):
 if __name__ == "__main__":
     while True:
         filename = input("input: ")
-        xcoord = 0 #home
+        xCoord = 0 #home
         try:
             startdraw(filename)
         except IOError:
