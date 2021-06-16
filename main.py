@@ -52,7 +52,7 @@ def home():
         if(ySwitch.is_pressed): # checks if limit switch is pressed, and sets the SwitchIsPressed to true, and sets the coordinates to the origin, else it moves the motor.
             print("y homed")
             ySwitchIsPressed = True
-            xCoord = 0
+            yCoord = 0
         else:
             #time.sleep(.1)
             yMotor.motor_run(GPIOY_pins , 0.01, 1, True, False, "full", .05)
@@ -61,7 +61,7 @@ def home():
         if(xSwitch.is_pressed):
             print("x homed")
             xSwitchIsPressed = True
-            yCoord = 0
+            xCoord = 0
         else:
             #time.sleep(.1)
             xMotor.motor_run(GPIOX_pins, 0.01, 1, True, False , "full", .05)
