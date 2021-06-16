@@ -45,7 +45,6 @@ def home():
             print("y homed")
             ySwitchIsPressed = True
         else:
-            print("ymotortest")
             time.sleep(.1)
             yMotor.motor_run(GPIOY_pins , 0.01, 1, True, False, "half", .05)
 
@@ -62,7 +61,6 @@ def home():
             print("z homed")
             zSwitchIsPressed = True
         else:
-            print("zmotortest")
             time.sleep(.1)
             zMotor.motor_run(GPIOZ_pins , 0.01, 1, True, False, "half", .05)
     print("sucessfully homed")
