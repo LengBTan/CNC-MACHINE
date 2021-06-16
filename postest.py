@@ -1,10 +1,6 @@
 
 from io import StringIO
 
-
-pos1 = 64
-pos2 = 1
-
 global xcoord
 xcoord = 0
 
@@ -20,50 +16,40 @@ def move(pos1, pos2):
         print((finalPos), " CCW")
 
 
-
-move(xcoord, pos1)
+""" move(xcoord, pos1)
 print("current coord is:", xcoord)
 move(xcoord, pos2)
 print("current coord is:", xcoord)
+ """
 
 def startdraw(filename):
     f = open(filename, "r")
-    input = f.read()
+    data = f.read()
     lines = data.splitlines()
     for i,line in enumerate(lines):
-        #print(line)
         if "X" in line:
-            xNext = line[1:]
-            print(xNext)
+            xNext = int(line[1:])
+            move(xcoord, xNext)
+            #print(xNext)
         if "Y" in line:
-            yNext = line[1:]
-            print(yNext)
+            yNext = int(line[1:])
+            
+            
+            #print(yNext)
         if "Z" in line:
-            zNext = line[1:]
-            print(zNext )
+            zNext = int(line[1:])
+            
+            
+            #print(zNext)
     f.close
 
 
 if __name__ == "__main__":
-    
     while True:
-        filename = input("input")
+        filename = input("input: ")
+        xcoord = 0 #home
         try:
-
-            f = open(filename, "r")
-            data = f.read()
-            lines = data.splitlines()
-            for i,line in enumerate(lines):
-                #print(line)
-                if "X" in line:
-                    xNext = line[1:]
-                    print(xNext)
-                if "Y" in line:
-                    yNext = line[1:]
-                    print(yNext)
-                if "Z" in line:
-                    zNext = line[1:]
-                    print(zNext )
-            f.close
+            startdraw(filename)
         except IOError:
-            print("could not find/load file")
+            print("Could not find or load file")
+        
