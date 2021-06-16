@@ -46,16 +46,16 @@ def home():
             ySwitchIsPressed = True
         else:
             print("ymotortest")
-            time.sleep(1)
-            yMotor.motor_run(GPIOY_pins , 0.005, 60, True, False, "half", .05)
+            time.sleep(.1)
+            yMotor.motor_run(GPIOY_pins , 0.005, 10, True, False, "half", .05)
 
     while ((xSwitchIsPressed == False)):
         if(xSwitch.is_pressed):
             print("x homed")
             xSwitchIsPressed = True
         else:
-            time.sleep(1)
-            xMotor.motor_run(GPIOX_pins, 0.005, 60, True, False , "half", .05)
+            time.sleep(.1)
+            xMotor.motor_run(GPIOX_pins, 0.005, 10, True, False , "half", .05)
 
     while ((zSwitchIsPressed == False)):
         if(zSwitch.is_pressed):
@@ -63,8 +63,8 @@ def home():
             zSwitchIsPressed = True
         else:
             print("zmotortest")
-            time.sleep(1)
-            zMotor.motor_run(GPIOZ_pins , 0.005, 60, True, False, "half", .05)
+            time.sleep(.1)
+            zMotor.motor_run(GPIOZ_pins , 0.005, 10, True, False, "half", .05)
     print("sucessfully homed")
 
 
@@ -107,7 +107,6 @@ def moveZ(pos1, pos2):
 
 if __name__ == "__main__":
     home()
-    filename = input("enter filename of drawing")
 
 
 
