@@ -83,12 +83,14 @@ def home():
 def moveX(pos1, pos2):
     global xCoord
     if(pos1 < pos2): #checks if pos1 is smaller than pos2 and finds the diffrence between pos2 and pos1.
-        finalPos = pos2 - pos1
+        finalPos = pos2 - pos1 # stores the steps needed to move to the final coordinate
         xCoord = pos1 + finalPos # stores the current x coordinate 
+        xMotor.motor_run(GPIOX_pins, 0.01, finalPos, False, False , "half", .05)
         print((finalPos), " CW X MOTOR")
     if(pos1 > pos2): # checks if pos1 is larger than pos2 and finds the diffrence between pos1 and pos2
         finalPos = pos1 - pos2
         xCoord = pos1 - finalPos
+        xMotor.motor_run(GPIOX_pins, 0.01, finalPos, True, False , "half", .05)
         print((finalPos), " CCW X MOTOR")
 
 def moveY(pos1, pos2):
@@ -96,10 +98,12 @@ def moveY(pos1, pos2):
     if(pos1 < pos2):
         finalPos = pos2 - pos1
         yCoord = pos1 + finalPos
+        yMotor.motor_run(GPIOY_pins , 0.01, finalPos, False, False, "half", .05)
         print((finalPos), " CW Y MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
         yCoord = pos1 - finalPos
+        yMotor.motor_run(GPIOY_pins , 0.01, finalPos, True, False, "half", .05)
         print((finalPos), " CCW Y MOTOR")
 
 def moveZ(pos1, pos2):
@@ -107,10 +111,12 @@ def moveZ(pos1, pos2):
     if(pos1 < pos2):
         finalPos = pos2 - pos1
         zCoord = pos1 + finalPos
+        zMotor.motor_run(GPIOZ_pins , 0.01, finalPos, True, False, "half", .05)
         print((finalPos), " CW Z MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
         zCoord = pos1 - finalPos
+        zMotor.motor_run(GPIOZ_pins , 0.01, finalPos, True, False, "half", .05)
         print((finalPos), " CCW Z MOTOR")
 
 
