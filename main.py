@@ -85,12 +85,12 @@ def moveX(pos1, pos2):
     if(pos1 < pos2): #checks if pos1 is smaller than pos2 and finds the diffrence between pos2 and pos1.
         finalPos = pos2 - pos1 # stores the steps needed to move to the final coordinate
         xCoord = pos1 + finalPos # stores the current x coordinate 
-        xMotor.motor_run(GPIOX_pins, 0.01, finalPos, False, False , "half", .05)
+        xMotor.motor_run(GPIOX_pins, 0.01, finalPos, False, False , "full", .05)
         print((finalPos), " CW X MOTOR")
     if(pos1 > pos2): # checks if pos1 is larger than pos2 and finds the diffrence between pos1 and pos2
         finalPos = pos1 - pos2
         xCoord = pos1 - finalPos
-        xMotor.motor_run(GPIOX_pins, 0.01, finalPos, True, False , "half", .05)
+        xMotor.motor_run(GPIOX_pins, 0.01, finalPos, True, False , "full", .05)
         print((finalPos), " CCW X MOTOR")
 
 def moveY(pos1, pos2):
@@ -98,12 +98,12 @@ def moveY(pos1, pos2):
     if(pos1 < pos2):
         finalPos = pos2 - pos1
         yCoord = pos1 + finalPos
-        yMotor.motor_run(GPIOY_pins , 0.01, finalPos, False, False, "half", .05)
+        yMotor.motor_run(GPIOY_pins , 0.01, finalPos, False, False, "full", .05)
         print((finalPos), " CW Y MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
         yCoord = pos1 - finalPos
-        yMotor.motor_run(GPIOY_pins , 0.01, finalPos, True, False, "half", .05)
+        yMotor.motor_run(GPIOY_pins , 0.01, finalPos, True, False, "full", .05)
         print((finalPos), " CCW Y MOTOR")
 
 def moveZ(pos1, pos2):
@@ -111,12 +111,12 @@ def moveZ(pos1, pos2):
     if(pos1 < pos2):
         finalPos = pos2 - pos1
         zCoord = pos1 + finalPos
-        zMotor.motor_run(GPIOZ_pins , 0.01, finalPos, True, False, "half", .05)
+        zMotor.motor_run(GPIOZ_pins , 0.01, finalPos, False, False, "full", .05)
         print((finalPos), " CW Z MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
         zCoord = pos1 - finalPos
-        zMotor.motor_run(GPIOZ_pins , 0.01, finalPos, True, False, "half", .05)
+        zMotor.motor_run(GPIOZ_pins , 0.01, finalPos, True, False, "full", .05)
         print((finalPos), " CCW Z MOTOR")
 
 
@@ -127,17 +127,18 @@ def draw(filename):
     f = open(filename, "r") #opens file
     data = f.read() #reads file
     lines = data.splitlines() # splits the lines into seperate strings
+    home()
     for i,line in enumerate(lines): #reads each line to the end of the file
         if "X" in line: # checks if X is in the line
-            xNext = line[1:]
+            xNext = int(line[1:])
             #print(i,xNext)
             moveX(xCoord, xNext)
         if "Y" in line: # checks if Y is in the line
-            yNext = line[1:]
+            yNext = int(line[1:])
             #print(i,yNext)
             moveY(yCoord, yNext)
         if "Z" in line: # checks if Z is in the line
-            zNext = line[1:]
+            zNext = int(line[1:])
             #print(i,zNext)
             moveZ(zCoord, zNext)
     f.close
@@ -145,14 +146,13 @@ def draw(filename):
 
 # main function
 if __name__ == "__main__":
-    home()
-    """while True: #loop
-        filename = input("input")
+    #home()
+    while True: #loop
+        filename = input("input: ")
         try: # Attempts to read filename using the draw function, if unable, prompts user that it could not load the file. 
-            home()#maybe move to draw function
             draw(filename)
         except IOError:
-            print("Could not find or load file")"""
+            print("Could not find or load file")
 
 #GPIO.cleanup()
 sys.exit() 
