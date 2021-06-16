@@ -26,6 +26,24 @@ print("current coord is:", xcoord)
 move(xcoord, pos2)
 print("current coord is:", xcoord)
 
+def startdraw(filename):
+    f = open(filename, "r")
+    input = f.read()
+    lines = data.splitlines()
+    for i,line in enumerate(lines):
+        #print(line)
+        if "X" in line:
+            xNext = line[1:]
+            print(xNext)
+        if "Y" in line:
+            yNext = line[1:]
+            print(yNext)
+        if "Z" in line:
+            zNext = line[1:]
+            print(zNext )
+    f.close
+
+
 if __name__ == "__main__":
     
     while True:
