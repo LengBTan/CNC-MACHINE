@@ -71,33 +71,33 @@ def moveX(pos1, pos2):
     if(pos1 < pos2):
         finalPos = pos2 - pos1
         xCoord = pos1 + finalPos
-        print((finalPos), " CW")
+        print((finalPos), " CW X MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
         xCoord = pos1 - finalPos
-        print((finalPos), " CCW")
+        print((finalPos), " CCW X MOTOR")
 
 def moveY(pos1, pos2):
     global yCoord
     if(pos1 < pos2):
         finalPos = pos2 - pos1
         yCoord = pos1 + finalPos
-        print((finalPos), " CW")
+        print((finalPos), " CW Y MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
         yCoord = pos1 - finalPos
-        print((finalPos), " CCW")
+        print((finalPos), " CCW Y MOTOR")
 
 def moveZ(pos1, pos2):
     global zCoord
     if(pos1 < pos2):
         finalPos = pos2 - pos1
         zCoord = pos1 + finalPos
-        print((finalPos), " CW")
+        print((finalPos), " CW Z MOTOR")
     if(pos1 > pos2):
         finalPos = pos1 - pos2
         zCoord = pos1 - finalPos
-        print((finalPos), " CCW")
+        print((finalPos), " CCW Z MOTOR")
 
 def draw(filename):
     f = open(filename, "r")
@@ -106,13 +106,16 @@ def draw(filename):
     for i,line in enumerate(lines):
         if "X" in line:
             xNext = line[1:]
-            print(xNext)
+            #print(xNext)
+            moveX(xCoord, xNext)
         if "Y" in line:
             yNext = line[1:]
-            print(yNext)
+            #print(yNext)
+            moveY(yCoord, yNext)
         if "Z" in line:
             zNext = line[1:]
-            print(zNext )
+            #print(zNext)
+            moveZ(zCoord, zNext)
     f.close
 
 if __name__ == "__main__":
