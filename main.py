@@ -54,8 +54,8 @@ def home():
             ySwitchIsPressed = True
             xCoord = 0
         else:
-            time.sleep(.1)
-            yMotor.motor_run(GPIOY_pins , 0.01, 1, True, False, "half", .05)
+            #time.sleep(.1)
+            yMotor.motor_run(GPIOY_pins , 0.01, 1, True, False, "full", .05)
 
     while ((xSwitchIsPressed == False)):
         if(xSwitch.is_pressed):
@@ -63,8 +63,8 @@ def home():
             xSwitchIsPressed = True
             yCoord = 0
         else:
-            time.sleep(.1)
-            xMotor.motor_run(GPIOX_pins, 0.01, 1, True, False , "half", .05)
+            #time.sleep(.1)
+            xMotor.motor_run(GPIOX_pins, 0.01, 1, True, False , "full", .05)
 
     while ((zSwitchIsPressed == False)):
         if(zSwitch.is_pressed):
@@ -72,8 +72,8 @@ def home():
             zSwitchIsPressed = True
             zCoord = 0
         else:
-            time.sleep(.1)
-            zMotor.motor_run(GPIOZ_pins , 0.01, 1, True, False, "half", .05)
+            #time.sleep(.1)
+            zMotor.motor_run(GPIOZ_pins , 0.01, 1, True, False, "full", .05)
     print("sucessfully homed")
 
 
