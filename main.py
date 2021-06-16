@@ -145,13 +145,14 @@ def draw(filename):
 
 # main function
 if __name__ == "__main__":
-    while True: #loop
+    home()
+    """while True: #loop
         filename = input("input")
         try: # Attempts to read filename using the draw function, if unable, prompts user that it could not load the file. 
             home()#maybe move to draw function
             draw(filename)
         except IOError:
-            print("Could not find or load file")
+            print("Could not find or load file")"""
 
 #GPIO.cleanup()
 sys.exit() 
