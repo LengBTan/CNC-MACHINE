@@ -33,11 +33,14 @@ class Sketch(tk.Tk):
         self.penOn = tk.Button(self, text="Pen Down", command= self.penOn, width=8, height=2, compound="c")
         self.penOn.place(x=540,y=110)
 
-        self.penUndo = tk.Button(self, text="UNDO", command= self.penUndo, width=8, height=2, compound="c")
-        self.penUndo.place(x=540,y=150)
+        self.fileWrite = tk.Button(self, text="Export", command= self.fileWrite, width=8, height=2, compound="c")
+        self.fileWrite.place(x=540,y=150)
 
         self.penClear = tk.Button(self, text="CLEAR", command= self.penClear, width=8, height=2, compound="c")
         self.penClear.place(x=540,y=200)
+
+        self.instructions = Text(width=12,height=20)
+        self.instructions.place(x=510,y=280)
 
         self.pen = turtle.RawTurtle(self.screen)
         self.pen.reset()
@@ -50,16 +53,9 @@ class Sketch(tk.Tk):
         yCoord = 0
 
 
-        self.instructions = Text(width=10,height=10)
-        self.instructions.place(x=510,y=250)
-        #self.instructions.insert(END, "\na")
-        #self.instructions.insert(END, "\nb")
-
-
     def moveUp(self):
         #print(self.pen.ycor())
         global yCoord
-        global penDown
         self.pen.setheading(90)
         self.pen.forward(10)
         if(self.pen.ycor()>240):
@@ -69,7 +65,7 @@ class Sketch(tk.Tk):
             self.instructions.insert(INSERT,"Y")
             self.instructions.insert(INSERT,yCoord)
             self.instructions.insert(END,"\n")
-            print(yCoord)
+            #print(yCoord)
 
 
     def moveLeft(self):
@@ -83,7 +79,7 @@ class Sketch(tk.Tk):
             self.instructions.insert(INSERT,"X")
             self.instructions.insert(INSERT,xCoord)
             self.instructions.insert(END,"\n")
-            print(xCoord)
+            #print(xCoord)
 
     def moveRight(self):
         global xCoord
@@ -96,11 +92,10 @@ class Sketch(tk.Tk):
             self.instructions.insert(INSERT,"X")
             self.instructions.insert(INSERT,xCoord)
             self.instructions.insert(END,"\n")
-            print(xCoord)
+            #print(xCoord)
     
     def moveDown(self):
         global yCoord
-        global penDown
         self.pen.setheading(270)
         self.pen.forward(10)
         print(self.pen.ycor())
@@ -111,7 +106,7 @@ class Sketch(tk.Tk):
             self.instructions.insert(INSERT,"Y")
             self.instructions.insert(INSERT,yCoord)
             self.instructions.insert(END,"\n")
-            print(yCoord)
+            #print(yCoord)
 
     def penOn(self):
 
@@ -124,9 +119,12 @@ class Sketch(tk.Tk):
         self.instructions.insert(INSERT,"Z10")
         self.instructions.insert(END,"\n")
     
-    def penUndo(self):
-        self.pen.undo()
-        
+    def fileWrite(self):
+        file = self.instructions.get('1.0', END)
+        f = open("file.txt", "w+")
+        f.write(file)
+        f.close()
+
     
     def penClear(self):
         global xCoord
@@ -140,11 +138,6 @@ class Sketch(tk.Tk):
         xCoord = 0
         yCoord = 0
         self.instructions.delete('1.0',END)
-
-    
-    
-
-
 
     
 if __name__ == "__main__":
