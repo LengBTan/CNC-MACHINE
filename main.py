@@ -147,12 +147,13 @@ def draw(filename):
 # main function
 if __name__ == "__main__":
     #home()
-    while True: #loop
+    while True: # Attempts to read filename using the draw function, if unable, prompts user that it could not load the file and tries again.
         filename = input("input: ")
-        try: # Attempts to read filename using the draw function, if unable, prompts user that it could not load the file. 
+        try: 
             draw(filename)
         except IOError:
             print("Could not find or load file")
 
-#GPIO.cleanup()
+
+#GPIO.cleanup() # bad practice to not clean up GPIO pins, but causes an error
 sys.exit() 
